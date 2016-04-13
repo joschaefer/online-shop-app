@@ -1,0 +1,13 @@
+<div class="modal-body" ng-swipe-left="Lightbox.nextImage()" ng-swipe-right="Lightbox.prevImage()">
+	<div class="lightbox-nav">
+		<button class="close" ng-click="$dismiss()">×</button>
+		<div class="btn-group" ng-if="Lightbox.images.length > 1">
+			<a class="btn btn-xs btn-default" ng-click="Lightbox.prevImage()">‹ Vorheriges Produkt</a>
+			<a class="btn btn-xs btn-default" ng-click="Lightbox.nextImage()">Nächstes Produkt ›</a>
+		</div>
+	</div>
+	<div class="lightbox-image-container">
+		<div class="lightbox-image-caption"><span>{{Lightbox.imageCaption}}</span></div>
+		<img lightbox-src="{{Lightbox.imageUrl}}">
+	</div>
+</div>

@@ -1,5 +1,6 @@
 a.panel {
 	display: block;
+	text-decoration: none;
 
 	.img-product {
 		margin-bottom: 10px;
@@ -14,7 +15,6 @@ a.panel {
 			color: #fff;
 			background-color: #337ab7;
 			border-color: #337ab7;
-			text-decoration: none;
 		}
 	}
 
@@ -23,8 +23,7 @@ a.panel {
 	}
 }
 
-@media (min-width: 992px) {
-	.text-price {
-		text-align: right;
-	}
+.lightbox-image-caption {
+	font-weight: normal;
+	text-shadow: none;
 }

@@ -6,8 +6,14 @@
 		.controller('ProductsController', ProductsController);
 
 	/** @ngInject */
-	function ProductsController() {
+	function ProductsController(Lightbox) {
+
 		var vm = this;
+
+		vm.openPreview = function( index ) {
+			Lightbox.openModal( vm.products, index );
+		};
+
 		vm.products = [{
 			title: 'Produkt #1',
 			number: '2014.08.1337',
@@ -65,5 +71,6 @@
 				original: 'http://dummyimage.com/800x600/575757/fff.jpg?text=Produkt+0x238'
 			}
 		}];
+
 	}
 })();

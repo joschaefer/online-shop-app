@@ -6,14 +6,11 @@
 <div class="row">
 
 	<div class="col-md-3 col-sm-4 col-xs-6" ng-repeat="product in p.products">
-		<a ng-href="{{ product.image.original }}" class="panel panel-default" data-toggle="lightbox" data-gallery="products" data-title="{{ product.title }}">
+		<a href ng-click="p.openPreview($index)" class="panel panel-default">
 			<div class="panel-heading">{{ product.title }}</div>
 			<div class="panel-body">
 				<img ng-src="{{ product.image.thumb }}" class="img-responsive img-product" alt="Produktbild">
-				<div class="row">
-					<div class="col-md-8 small text-muted">Produkt-Nr. {{ product.number }}</div>
-					<!--<div class="col-md-4 small text-success text-price">18,00 €/m</div>-->
-				</div>
+				<span class="small text-muted">Produkt-Nr. {{ product.number }}</span>
 			</div>
 		</a>
 	</div>
