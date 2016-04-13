@@ -1,0 +1,30 @@
+a.panel {
+	display: block;
+
+	.img-product {
+		margin-bottom: 10px;
+	}
+
+	&:hover {
+		cursor: pointer;
+		cursor: zoom-in;
+		border-color: #337ab7;
+
+		.panel-heading {
+			color: #fff;
+			background-color: #337ab7;
+			border-color: #337ab7;
+			text-decoration: none;
+		}
+	}
+
+	.panel-body {
+		padding-bottom: 10px;
+	}
+}
+
+@media (min-width: 992px) {
+	.text-price {
+		text-align: right;
+	}
+}

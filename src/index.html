@@ -1,0 +1,49 @@
+<!doctype html>
+<html ng-app="simpleOnlineShop">
+	<head>
+		<meta charset="utf-8">
+		<title>Einfacher Online-Shop</title>
+		<meta name="description" content="">
+		<meta name="viewport" content="width=device-width">
+
+		<!-- build:css({.tmp/serve,src}) styles/vendor.css -->
+		<!-- bower:css -->
+		<!-- run `gulp inject` to automatically populate bower styles dependencies -->
+		<!-- endbower -->
+		<!-- endbuild -->
+
+		<!-- build:css({.tmp/serve,src}) styles/app.css -->
+		<!-- inject:css -->
+		<!-- css files will be automatically insert here -->
+		<!-- endinject -->
+		<!-- endbuild -->
+	</head>
+	<body ng-controller="MainController as m">
+
+		<div ui-view name="navbar"></div>
+
+		<div class="container">
+			<div ui-view name="content"></div>
+		</div>
+
+		<footer class="page-footer">
+			&copy; {{ m.date | date:'yyyy' }} <a ng-href="{{ m.settings.copyright.link }}">{{ m.settings.copyright.text }}</a>
+		</footer>
+
+		<!-- build:js(src) scripts/vendor.js -->
+		<!-- bower:js -->
+		<!-- run `gulp inject` to automatically populate bower script dependencies -->
+		<!-- endbower -->
+		<!-- endbuild -->
+
+		<!-- build:js({.tmp/serve,.tmp/partials,src}) scripts/app.js -->
+		<!-- inject:js -->
+		<!-- js files will be automatically insert here -->
+		<!-- endinject -->
+
+		<!-- inject:partials -->
+		<!-- angular templates will be automatically converted in js and inserted here -->
+		<!-- endinject -->
+		<!-- endbuild -->
+	</body>
+</html>

@@ -1,0 +1,65 @@
+/**
+ * Override bootstrap variables here:
+ */
+$icon-font-path: "../../bower_components/bootstrap-sass/assets/fonts/bootstrap/";
+
+/**
+ *  Do not remove the comments below. It's the markers used by wiredep to inject
+ *  sass dependencies when defined in the bower.json of your dependencies
+ */
+// bower:scss
+// endbower
+
+/**
+ * Basic site-wide styles
+ */
+*, button, input, i, a {
+	-webkit-font-smoothing: antialiased;
+}
+
+body {
+	position: relative;
+	min-height: 100vh;
+	padding: 70px 0 35px;
+}
+
+.page-header {
+	margin-top: 20px;
+	margin-bottom: 20px;
+	border-bottom: 0;
+}
+
+.page-footer {
+	position: absolute;
+	bottom: 0;
+	height: 35px;
+	width: 100%;
+	text-align: center;
+	color: #a2a2a2;
+	font-size: 90%;
+
+	a {
+		color: #a2a2a2;
+		&:hover {
+			color: #777;
+			text-decoration: none;
+		}
+	}
+}
+
+.table-align-middle > tbody > tr > td,
+.table-align-middle > tbody > tr > th,
+.table-align-middle > tfoot > tr > td,
+.table-align-middle > tfoot > tr > th,
+.table-align-middle > thead > tr > td,
+.table-align-middle > thead > tr > th {
+	vertical-align: middle;
+}
+
+
+/**
+ *  Do not remove the comments below. It's the markers used by gulp-inject to inject
+ *  all your sass files automatically
+ */
+// injector
+// endinjector
