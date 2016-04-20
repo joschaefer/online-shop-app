@@ -6,17 +6,17 @@
 		.controller('AdminCategoriesController', AdminCategoriesController);
 
 	/** @ngInject */
-	function AdminCategoriesController() {
+	function AdminCategoriesController(Restangular) {
+
 		var vm = this;
-		vm.categories = [{
-			title: 'Kategorie #1',
-			numberOfProducts: 2
-		},{
-			title: 'Kategorie #2',
-			numberOfProducts: 7
-		},{
-			title: 'Kategorie #3',
-			numberOfProducts: 4
-		}];
+
+		Restangular.all('categories').getList().then(function(data) {
+			vm.categories = data;
+		});
+
+		vm.toggleSelection = function(category) {
+			category.selected = !category.selected;
+		}
+
 	}
 })();

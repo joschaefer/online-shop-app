@@ -6,7 +6,7 @@
 		.config(config);
 
 	/** @ngInject */
-	function config($logProvider, toastrConfig, cfpLoadingBarProvider, LightboxProvider) {
+	function config($logProvider, toastrConfig, cfpLoadingBarProvider, LightboxProvider, RestangularProvider) {
 		// Enable log
 		$logProvider.debugEnabled(true);
 
@@ -27,6 +27,9 @@
 		};
 
 		LightboxProvider.templateUrl = 'app/components/products/lightbox.html';
+
+		RestangularProvider.setBaseUrl( 'http://localhost:1337' );
+		//RestangularProvider.setDefaultHttpFields({cache: true});
 
 	}
 

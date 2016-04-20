@@ -12,6 +12,7 @@
 
 		vm.settings = {
 			shopName: 'Einfacher Online-Shop',
+			baseUrl: 'http://localhost:1337',
 			copyright: {
 				text: 'Musterfirma GmbH',
 				link: '#'

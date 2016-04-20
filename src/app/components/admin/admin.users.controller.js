@@ -6,28 +6,17 @@
 		.controller('AdminUsersController', AdminUsersController);
 
 	/** @ngInject */
-	function AdminUsersController() {
+	function AdminUsersController(Restangular) {
+
 		var vm = this;
-		vm.users = [{
-			emailAddress: 'mail@beispiel.de',
-			password: 'geheim123',
-			status: 'Kunde',
-			active: true
-		},{
-			emailAddress: 'mail@beispiel.de',
-			password: 'geheim123',
-			status: 'Kunde',
-			active: true
-		},{
-			emailAddress: 'mail@beispiel.de',
-			password: 'geheim123',
-			status: 'Kunde',
-			active: false
-		},{
-			emailAddress: 'mail@beispiel.de',
-			password: 'geheim123',
-			status: 'Administrator',
-			active: true
-		}];
+
+		Restangular.all('users').getList().then(function(data) {
+			vm.users = data;
+		});
+
+		vm.toggleSelection = function(user) {
+			user.selected = !user.selected;
+		}
+
 	}
 })();
