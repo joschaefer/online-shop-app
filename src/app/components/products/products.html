@@ -3,9 +3,11 @@
 	<p class="text-muted">Bitte klicken Sie für eine vergrößerte Ansicht auf das Produkt.</p>
 </div>
 
-<div class="row">
+<div class="row" ng-repeat="category in p.categories">
 
-	<div class="col-md-3 col-sm-4 col-xs-6" ng-repeat="product in p.products">
+	<h3 class="col-xs-12" ng-if="category.products.length">{{ category.title }}</h3>
+
+	<div class="col-md-3 col-sm-4 col-xs-6" ng-repeat="product in category.products">
 		<a href ng-click="p.openPreview($index)" class="panel panel-default">
 			<div class="panel-heading">{{ product.title }}</div>
 			<div class="panel-body">
