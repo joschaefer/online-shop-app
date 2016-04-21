@@ -9,10 +9,11 @@
 	function config($logProvider, toastrConfig, cfpLoadingBarProvider, LightboxProvider, RestangularProvider) {
 		// Enable log
 		$logProvider.debugEnabled(true);
-		
+
 		toastrConfig.timeOut = 5000;
 		toastrConfig.positionClass = 'toast-top-right';
 		toastrConfig.preventDuplicates = true;
+		toastrConfig.progressBar = true;
 
 		cfpLoadingBarProvider.includeSpinner = false;
 
