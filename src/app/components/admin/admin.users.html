@@ -34,7 +34,31 @@
 				<button type="button" class="btn btn-sm btn-info" uib-tooltip="Bearbeiten"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>
 				<button type="button" class="btn btn-sm btn-warning" uib-tooltip="Deaktivieren" ng-if="user.active"><span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span></button>
 				<button type="button" class="btn btn-sm btn-success" uib-tooltip="Aktivieren" ng-if="!user.active"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></button>
-				<button type="button" class="btn btn-sm btn-danger" uib-tooltip="Löschen"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+				<button type="button" class="btn btn-sm btn-danger" ng-class="{ 'disabled': user.status == 'admin' }" ng-click="u.delete(user); $event.stopPropagation();" uib-tooltip="Löschen"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+			</td>
+		</tr>
+		<tr class="active">
+			<td></td>
+			<td><input type="email" class="form-control" ng-model="user.email" placeholder="E-Mail-Adresse"></td>
+			<td>
+				<select class="form-control">
+					<option disabled selected hidden>Aktiv</option>
+					<option>Ja</option>
+					<option>Nein</option>
+				</select>
+			</td>
+			<td>
+				<select class="form-control">
+					<option disabled selected hidden>Status</option>
+					<option>Kunde</option>
+					<option>Mitarbeiter</option>
+					<option>Administrator</option>
+				</select>
+			</td>
+			<td>{{ u.date | date: 'd.M.yyyy H:mm' }}</td>
+			<td>
+				<button type="button" class="btn btn-sm btn-success"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></button>
+				<button type="button" class="btn btn-sm btn-default"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
 			</td>
 		</tr>
 	</tbody>
@@ -44,7 +68,7 @@
 			<td colspan="5">
 				<button type="button" class="btn btn-sm btn-success"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> Aktivieren</button>
 				<button type="button" class="btn btn-sm btn-warning"><span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span> Deaktivieren</button>
-				<button type="button" class="btn btn-sm btn-danger"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Löschen</button>
+				<button type="button" class="btn btn-sm btn-danger" ng-click="u.deleteSelected();"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Löschen</button>
 			</td>
 		</tr>
 	</tfoot>

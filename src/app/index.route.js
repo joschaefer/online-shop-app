@@ -35,39 +35,40 @@
 				}
 			})
 			.state('admin', {
-				url: '/admin/',
+				abstract: true,
+				url: '/admin',
 				views: {
 					navbar: {
 						templateUrl: 'app/components/navbar/navbar.html'
 					},
 					content: {
-						templateUrl: 'app/components/admin/admin.html'
+						template: '<div ng-controller="AdminController as a"><ui-view/></div>'
 					}
 				}
 			})
 			.state('admin.products', {
-				url: 'products/',
+				url: '/products',
 				templateUrl: 'app/components/admin/admin.products.html',
 				controller: 'AdminProductsController',
-				controllerAs: 'a'
+				controllerAs: 'p'
 			})
 			.state('admin.categories', {
-				url: 'categories/',
+				url: '/categories',
 				templateUrl: 'app/components/admin/admin.categories.html',
 				controller: 'AdminCategoriesController',
-				controllerAs: 'a'
+				controllerAs: 'c'
 			})
 			.state('admin.users', {
-				url: 'users/',
+				url: '/users',
 				templateUrl: 'app/components/admin/admin.users.html',
 				controller: 'AdminUsersController',
-				controllerAs: 'a'
+				controllerAs: 'u'
 			})
 			.state('admin.settings', {
-				url: 'settings/',
+				url: '/settings',
 				templateUrl: 'app/components/admin/admin.settings.html',
 				controller: 'AdminSettingsController',
-				controllerAs: 'a'
+				controllerAs: 's'
 			});
 
 	}
