@@ -27,3 +27,18 @@ a.panel {
 	font-weight: normal;
 	text-shadow: none;
 }
+
+.product-list {
+	padding-bottom: 1.5em;
+
+	h3 {
+		margin-top: 0;
+		margin-bottom: 1em;
+		padding-bottom: .3em;
+		border-bottom: 1px solid #ddd;
+	}
+
+	&:last-of-type {
+		padding-bottom: 0;
+	}
+}
