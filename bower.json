@@ -1,9 +1,15 @@
 {
-  "name": "simple-online-shop",
-  "authors": [
-    "Johannes Schäfer <mail@johannes-schaefer.net>"
-  ],
+  "name": "online-shop-app",
+  "private": true,
   "version": "0.0.0",
+  "description": "Store a list of products. Products can be categorized and access is granted to users on a login-base.",
+  "license": "GPL-3.0",
+  "keywords": [],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/joschaefer/online-shop-app"
+  },
+  "authors": [ "Johannes Schäfer <mail@johannes-schaefer.net>" ],
   "dependencies": {
     "bootstrap-sass": "^3.3.5",
     "html5shiv": "^3.7.3",
@@ -19,6 +25,9 @@
   },
   "devDependencies": {
     "angular-mocks": "~1.4.2"
+  },
+  "resolutions": {
+    "angular": "^1.5.3"
   },
   "overrides": {
     "bootstrap-sass": {

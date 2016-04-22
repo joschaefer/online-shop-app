@@ -1,13 +1,16 @@
 {
-  "name": "simple-online-shop",
-  "authors": [
-    "Johannes Schäfer <mail@johannes-schaefer.net>"
-  ],
+  "name": "online-shop-app",
+  "private": true,
   "version": "0.0.0",
-  "dependencies": {},
-  "scripts": {
-    "test": "gulp test"
+  "description": "Store a list of products. Products can be categorized and access is granted to users on a login-base.",
+  "license": "GPL-3.0",
+  "keywords": [],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/joschaefer/online-shop-app"
   },
+  "author": "Johannes Schäfer <mail@johannes-schaefer.net>",
+  "dependencies": {},
   "devDependencies": {
     "estraverse": "~4.1.0",
     "gulp": "~3.9.0",
@@ -51,6 +54,9 @@
     "chalk": "~1.1.1",
     "uglify-save-license": "~0.4.1",
     "wrench": "~1.5.8"
+  },
+  "scripts": {
+    "test": "gulp test"
   },
   "engines": {
     "node": ">=0.10.0"
