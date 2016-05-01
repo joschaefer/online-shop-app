@@ -12,8 +12,8 @@
 
 		toastrConfig.timeOut = 5000;
 		toastrConfig.positionClass = 'toast-top-right';
-		toastrConfig.preventDuplicates = true;
-		toastrConfig.progressBar = true;
+		toastrConfig.preventDuplicates = false;
+		toastrConfig.progressBar = false;
 
 		cfpLoadingBarProvider.includeSpinner = false;
 
