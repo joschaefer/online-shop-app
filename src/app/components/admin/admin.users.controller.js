@@ -6,7 +6,7 @@
 		.controller('AdminUsersController', AdminUsersController);
 
 	/** @ngInject */
-	function AdminUsersController( $scope, $uibModal ) {
+	function AdminUsersController( $scope, toastr, $uibModal ) {
 
 		var vm = this,
 			msg = {

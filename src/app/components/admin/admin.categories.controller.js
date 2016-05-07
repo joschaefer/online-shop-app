@@ -6,7 +6,7 @@
 		.controller('AdminCategoriesController', AdminCategoriesController);
 
 	/** @ngInject */
-	function AdminCategoriesController( $scope, $uibModal ) {
+	function AdminCategoriesController( $scope, toastr, $uibModal ) {
 
 		var vm = this,
 			msg = {
