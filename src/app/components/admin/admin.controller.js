@@ -6,7 +6,7 @@
 		.controller('AdminController', AdminController);
 
 	/** @ngInject */
-	function AdminController(Restangular, toastr, $window) {
+	function AdminController( Restangular, toastr, $window, $log ) {
 
 		var vm = this;
 
@@ -54,7 +54,7 @@
 
 				}, function( response ) {
 
-					console.log( 'Error deleting an item:', response );
+					$log.error( 'Error deleting an item:', response );
 					toastr.error( msgError );
 
 				});
@@ -109,7 +109,7 @@
 
 					}, function( response ) {
 
-						console.log( 'Error deleting an item:', response );
+						$log.error( 'Error deleting an item:', response );
 						error++;
 
 					});
@@ -139,7 +139,7 @@
 				toastr.success( msgSuccess );
 			}, function( response ) {
 
-				console.log( 'Error activating an item:', response );
+				$log.error( 'Error activating an item:', response );
 				toastr.error( msgError );
 
 			});
@@ -174,7 +174,7 @@
 				item.active = true;
 
 				item.save().catch(function( response ) {
-					console.log( 'Error activating an item:', response );
+					$log.error( 'Error activating an item:', response );
 					error++;
 				});
 
@@ -199,7 +199,7 @@
 				toastr.success( msgSuccess );
 			}, function( response ) {
 
-				console.log( 'Error activating an item:', response );
+				$log.error( 'Error activating an item:', response );
 				toastr.error( msgError );
 
 			});
@@ -234,7 +234,7 @@
 				item.active = false;
 
 				item.save().catch(function( response ) {
-					console.log( 'Error deactivating an item:', response );
+					$log.error( 'Error deactivating an item:', response );
 					error++;
 				});
 
