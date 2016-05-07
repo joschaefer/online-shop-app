@@ -1,5 +1,5 @@
 <div class="page-header">
-	<button type="button" class="btn btn-sm btn-success pull-right"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Neuen Benutzer hinzufügen</button>
+	<button type="button" class="btn btn-sm btn-success pull-right" ng-click="u.add();"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Neuen Benutzer hinzufügen</button>
 	<h1>Benutzer verwalten</h1>
 	<p class="text-muted">Hier können Sie Benutzer hinzufügen, bearbeiten und löschen.</p>
 </div>
@@ -51,8 +51,8 @@
 				<button type="button" class="btn btn-sm btn-danger" ng-click="u.delete(user); $event.stopPropagation();" ng-class="{ 'disabled': user.status == 'admin' }" uib-tooltip="Löschen"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
 			</td>
 			<td ng-show="u.editing[ user.id ]">
-				<button type="button" class="btn btn-sm btn-success" ng-click="u.save(user); $event.stopPropagation();"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></button>
-				<button type="button" class="btn btn-sm btn-default" ng-click="u.cancel(user); $event.stopPropagation();"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+				<button type="button" class="btn btn-sm btn-success" ng-click="u.save(user); $event.stopPropagation();" uib-tooltip="Speichern"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></button>
+				<button type="button" class="btn btn-sm btn-default" ng-click="u.cancel(user); $event.stopPropagation();" uib-tooltip="Abbrechen"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
 			</td>
 		</tr>
 	</tbody>

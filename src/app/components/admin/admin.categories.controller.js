@@ -6,7 +6,7 @@
 		.controller('AdminCategoriesController', AdminCategoriesController);
 
 	/** @ngInject */
-	function AdminCategoriesController( $scope ) {
+	function AdminCategoriesController( $scope, $uibModal ) {
 
 		var vm = this,
 			msg = {
@@ -33,6 +33,18 @@
 					],
 					nothingSelected: 'Sie haben keine Kategorie ausgewählt. Klicken Sie auf eine Tabellenzeile, um eine Kategorie zu wählen, die Sie löschen möchten.'
 				},
+				add: {
+					success: [
+						'Die Kategorie „%s“ wurde erfolgreich hinzugefügt.',
+						'Die Kategorie wurde erfolgreich hinzugefügt.',
+						'Alle %d Kategorien wurden erfolgreich hinzugefügt.'
+					],
+					error: [
+						'Die Kategorie „%s“ konnte nicht hinzugefügt werden.',
+						'Die Kategorie konnte nicht hinzugefügt werden.',
+						'Es konnten nicht alle %d Kategorien hinzugefügt werden.'
+					]
+				},
 				save: {
 					success: [
 						'Die Kategorie „%s“ wurde erfolgreich gespeichert.',
@@ -53,6 +65,17 @@
 			if( ! vm.editing[ category.id ] ) {
 				$scope.$parent.a.toggleSelection(category);
 			}
+		};
+
+		vm.add = function() {
+
+			$uibModal.open({
+				templateUrl: 'app/components/admin/admin.categories.modal.html',
+				scope: $scope
+			}).result.then(function( newCategory ) {
+				$scope.$parent.a.add( $scope.$parent.a.categories, newCategory, newCategory.title, msg.add );
+			});
+
 		};
 
 		vm.edit = function( category ) {
@@ -106,4 +129,5 @@
 		};
 
 	}
+
 })();

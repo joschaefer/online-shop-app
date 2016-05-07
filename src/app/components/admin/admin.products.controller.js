@@ -6,7 +6,7 @@
 		.controller('AdminProductsController', AdminProductsController);
 
 	/** @ngInject */
-	function AdminProductsController($scope) {
+	function AdminProductsController( $scope, $uibModal ) {
 
 		var vm = this,
 			msg = {
@@ -27,6 +27,18 @@
 						'Es konnten nicht alle %d Produkte gelöscht werden.'
 					],
 					nothingSelected: 'Sie haben kein Produkt ausgewählt. Klicken Sie auf eine Tabellenzeile, um ein Produkt zu wählen, das Sie löschen möchten.'
+				},
+				add: {
+					success: [
+						'Das Produkt „%s“ wurde erfolgreich hinzugefügt.',
+						'Das Produkt wurde erfolgreich hinzugefügt.',
+						'Alle %d Produkte wurden erfolgreich hinzugefügt.'
+					],
+					error: [
+						'Das Produkt „%s“ konnte nicht hinzugefügt werden.',
+						'Das Produkt konnte nicht hinzugefügt werden.',
+						'Es konnten nicht alle %d Produkte hinzugefügt werden.'
+					]
 				},
 				save: {
 					success: [
@@ -76,6 +88,17 @@
 			}
 		};
 
+		vm.add = function() {
+
+			$uibModal.open({
+				templateUrl: 'app/components/admin/admin.products.modal.html',
+				scope: $scope
+			}).result.then(function( newProduct ) {
+				$scope.$parent.a.add( $scope.$parent.a.products, newProduct, newProduct.title, msg.add );
+			});
+
+		};
+
 		vm.edit = function( product ) {
 			vm.editing[ product.id ] = angular.copy(product);
 		};
@@ -123,4 +146,5 @@
 		};
 
 	}
+
 })();

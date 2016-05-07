@@ -1,5 +1,5 @@
 <div class="page-header">
-	<button type="button" class="btn btn-sm btn-success pull-right"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Neues Produkt hinzufügen</button>
+	<button type="button" class="btn btn-sm btn-success pull-right" ng-click="p.add();"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Neues Produkt hinzufügen</button>
 	<h1>Produkte verwalten</h1>
 	<p class="text-muted">Hier können Sie Produkte hinzufügen, bearbeiten und löschen.</p>
 </div>
@@ -39,8 +39,8 @@
 				<button type="button" class="btn btn-xs btn-danger" ng-click="p.delete(product); $event.stopPropagation();"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Löschen</button>
 			</td>
 			<td ng-show="p.editing[ product.id ]">
-				<button type="button" class="btn btn-sm btn-success" ng-click="p.save(product); $event.stopPropagation();"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></button>
-				<button type="button" class="btn btn-sm btn-default" ng-click="p.cancel(product); $event.stopPropagation();"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+				<button type="button" class="btn btn-xs btn-success" ng-click="p.save(product); $event.stopPropagation();"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Speichern</button>
+				<button type="button" class="btn btn-xs btn-default" ng-click="p.cancel(product); $event.stopPropagation();"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Abbrechen</button>
 			</td>
 		</tr>
 	</tbody>

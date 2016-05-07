@@ -1,5 +1,5 @@
 <div class="page-header">
-	<button type="button" class="btn btn-sm btn-success pull-right"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Neue Kategorie hinzufügen</button>
+	<button type="button" class="btn btn-sm btn-success pull-right" ng-click="c.add();"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Neue Kategorie hinzufügen</button>
 	<h1>Kategorien verwalten</h1>
 	<p class="text-muted">Hier können Sie Kategorien hinzufügen, bearbeiten und löschen.</p>
 </div>
@@ -24,8 +24,8 @@
 				<button type="button" class="btn btn-xs btn-danger" ng-click="c.delete(category); $event.stopPropagation();"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Löschen</button>
 			</td>
 			<td ng-show="c.editing[ category.id ]">
-				<button type="button" class="btn btn-sm btn-success" ng-click="c.save(category); $event.stopPropagation();"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></button>
-				<button type="button" class="btn btn-sm btn-default" ng-click="c.cancel(category); $event.stopPropagation();"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+				<button type="button" class="btn btn-xs btn-success" ng-click="c.save(category); $event.stopPropagation();"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Speichern</button>
+				<button type="button" class="btn btn-xs btn-default" ng-click="c.cancel(category); $event.stopPropagation();"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Abbrechen</button>
 			</td>
 		</tr>
 	</tbody>

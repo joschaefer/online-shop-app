@@ -6,7 +6,7 @@
 		.controller('AdminUsersController', AdminUsersController);
 
 	/** @ngInject */
-	function AdminUsersController( $scope ) {
+	function AdminUsersController( $scope, $uibModal ) {
 
 		var vm = this,
 			msg = {
@@ -32,6 +32,18 @@
 						'Einer der gewählten Benutzer ist Administrator und kann daher nicht gelöscht werden.'
 					],
 					nothingSelected: 'Sie haben keinen Benutzer ausgewählt. Klicken Sie auf eine Tabellenzeile, um einen Benutzer zu wählen, den Sie löschen möchten.'
+				},
+				add: {
+					success: [
+						'Der Benutzer „%s“ wurde erfolgreich hinzugefügt.',
+						'Der Benutzer wurde erfolgreich hinzugefügt.',
+						'Alle %d Benutzer wurden erfolgreich hinzugefügt.'
+					],
+					error: [
+						'Der Benutzer „%s“ konnte nicht hinzugefügt werden.',
+						'Der Benutzer konnte nicht hinzugefügt werden.',
+						'Es konnten nicht alle %d Benutzer hinzugefügt werden.'
+					]
 				},
 				save: {
 					success: [
@@ -84,6 +96,17 @@
 			if( ! vm.editing[ user.id ] ) {
 				$scope.$parent.a.toggleSelection(user);
 			}
+		};
+
+		vm.add = function() {
+
+			$uibModal.open({
+				templateUrl: 'app/components/admin/admin.users.modal.html',
+				scope: $scope
+			}).result.then(function( newUser ) {
+				$scope.$parent.a.add( $scope.$parent.a.users, newUser, newUser.email, msg.add );
+			});
+
 		};
 
 		vm.edit = function( user ) {
@@ -161,4 +184,5 @@
 		};
 
 	}
+
 })();

@@ -32,12 +32,31 @@
 			item.selected = ! item.selected;
 		};
 
+		vm.add = function( collection, item, name, msg ) {
+
+			var msgSuccess = _.replace( msg.success[0], '%s', name ),
+				msgError   = _.replace( msg.error[0],   '%s', name );
+
+			collection.post( item ).then(function( newItem ) {
+
+				collection.push( newItem );
+				toastr.success( msgSuccess );
+
+			}, function( response ) {
+
+				$log.error( 'Error creating an item:', response );
+				toastr.error( msgError );
+
+			});
+
+		};
+
 		vm.update = function( item, name, msg ) {
 
 			var msgSuccess = _.replace( msg.success[0], '%s', name ),
 				msgError   = _.replace( msg.error[0],   '%s', name );
 
-			item.save().then(function() {
+			item.put().then(function() {
 				toastr.success( msgSuccess );
 			}, function( response ) {
 
@@ -151,7 +170,7 @@
 
 			item.active = true;
 
-			item.save().then(function() {
+			item.put().then(function() {
 				toastr.success( msgSuccess );
 			}, function( response ) {
 
@@ -189,7 +208,7 @@
 
 				item.active = true;
 
-				item.save().catch(function( response ) {
+				item.put().catch(function( response ) {
 					$log.error( 'Error activating an item:', response );
 					error++;
 				});
@@ -211,7 +230,7 @@
 
 			item.active = false;
 
-			item.save().then(function() {
+			item.put().then(function() {
 				toastr.success( msgSuccess );
 			}, function( response ) {
 
@@ -249,7 +268,7 @@
 
 				item.active = false;
 
-				item.save().catch(function( response ) {
+				item.put().catch(function( response ) {
 					$log.error( 'Error deactivating an item:', response );
 					error++;
 				});
