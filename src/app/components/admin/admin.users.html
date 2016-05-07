@@ -16,49 +16,43 @@
 		</tr>
 	</thead>
 	<tbody>
-		<tr ng-repeat="user in a.users" ng-click="a.toggleSelection(user);" ng-class="{ 'active': user.selected }">
-			<td><input type="checkbox" ng-model="user.selected" ng-click="$event.stopPropagation();"></td>
-			<td>{{ user.email }}</td>
-			<td ng-switch="user.active">
+		<tr ng-repeat="user in a.users" ng-click="u.select(user);" ng-class="{ 'active': user.selected }">
+			<td><input type="checkbox" ng-model="user.selected" ng-click="$event.stopPropagation();" ng-hide="u.editing[ user.id ]"></td>
+			<td ng-hide="u.editing[ user.id ]">{{ user.email }}</td>
+			<td ng-show="u.editing[ user.id ]"><input type="email" class="form-control" ng-model="user.email" placeholder="E-Mail-Adresse"></td>
+			<td ng-switch="user.active" ng-hide="u.editing[ user.id ]">
 				<span class="label label-success" ng-switch-when="true">Ja</span>
 				<span class="label label-warning" ng-switch-default>Nein</span>
 			</td>
-			<td ng-switch="user.status">
+			<td ng-show="u.editing[ user.id ]">
+				<select class="form-control" ng-options="(active ? 'Ja' : 'Nein') for active in [true, false]" ng-model="user.active">
+					<option disabled selected hidden>Aktiv</option>
+				</select>
+			</td>
+			<td ng-switch="user.status" ng-hide="u.editing[ user.id ]">
 				<span ng-switch-when="customer">Kunde</span>
 				<span ng-switch-when="employee">Mitarbeiter</span>
 				<span ng-switch-when="admin">Administrator</span>
 			</td>
-			<td>{{ user.createdAt | date: 'd.M.yyyy H:mm' }}</td>
-			<td>
-				<button type="button" class="btn btn-sm btn-primary" uib-tooltip="Passwort zuschicken"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span></button>
-				<button type="button" class="btn btn-sm btn-info" uib-tooltip="Bearbeiten"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>
-				<button type="button" class="btn btn-sm btn-warning" ng-class="{ 'disabled': user.status == 'admin' }" ng-click="u.deactivate(user); $event.stopPropagation();" uib-tooltip="Deaktivieren" ng-if="user.active"><span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span></button>
-				<button type="button" class="btn btn-sm btn-success" ng-click="u.activate(user); $event.stopPropagation();" uib-tooltip="Aktivieren" ng-if="!user.active"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></button>
-				<button type="button" class="btn btn-sm btn-danger" ng-class="{ 'disabled': user.status == 'admin' }" ng-click="u.delete(user); $event.stopPropagation();" uib-tooltip="Löschen"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
-			</td>
-		</tr>
-		<tr class="active">
-			<td></td>
-			<td><input type="email" class="form-control" ng-model="user.email" placeholder="E-Mail-Adresse"></td>
-			<td>
-				<select class="form-control">
-					<option disabled selected hidden>Aktiv</option>
-					<option>Ja</option>
-					<option>Nein</option>
-				</select>
-			</td>
-			<td>
-				<select class="form-control">
+			<td ng-show="u.editing[ user.id ]">
+				<select class="form-control" ng-model="user.status">
 					<option disabled selected hidden>Status</option>
-					<option>Kunde</option>
-					<option>Mitarbeiter</option>
-					<option>Administrator</option>
+					<option value="customer">Kunde</option>
+					<option value="employee">Mitarbeiter</option>
+					<option value="admin">Administrator</option>
 				</select>
 			</td>
-			<td>{{ u.date | date: 'd.M.yyyy H:mm' }}</td>
-			<td>
-				<button type="button" class="btn btn-sm btn-success"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></button>
-				<button type="button" class="btn btn-sm btn-default"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+			<td>{{ user.createdAt | date: 'd.M.yyyy H:mm' }}</td>
+			<td ng-hide="u.editing[ user.id ]">
+				<button type="button" class="btn btn-sm btn-primary" uib-tooltip="Passwort zuschicken"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span></button>
+				<button type="button" class="btn btn-sm btn-info" ng-click="u.edit(user); $event.stopPropagation();" uib-tooltip="Bearbeiten"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>
+				<button type="button" class="btn btn-sm btn-warning" ng-click="u.deactivate(user); $event.stopPropagation();" ng-class="{ 'disabled': user.status == 'admin' }" uib-tooltip="Deaktivieren" ng-if="user.active"><span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span></button>
+				<button type="button" class="btn btn-sm btn-success" ng-click="u.activate(user); $event.stopPropagation();" uib-tooltip="Aktivieren" ng-if="!user.active"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></button>
+				<button type="button" class="btn btn-sm btn-danger" ng-click="u.delete(user); $event.stopPropagation();" ng-class="{ 'disabled': user.status == 'admin' }" uib-tooltip="Löschen"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+			</td>
+			<td ng-show="u.editing[ user.id ]">
+				<button type="button" class="btn btn-sm btn-success" ng-click="u.save(user); $event.stopPropagation();"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></button>
+				<button type="button" class="btn btn-sm btn-default" ng-click="u.cancel(user); $event.stopPropagation();"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
 			</td>
 		</tr>
 	</tbody>

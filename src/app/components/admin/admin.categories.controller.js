@@ -6,7 +6,7 @@
 		.controller('AdminCategoriesController', AdminCategoriesController);
 
 	/** @ngInject */
-	function AdminCategoriesController( $scope, toastr ) {
+	function AdminCategoriesController( $scope ) {
 
 		var vm = this,
 			msg = {
@@ -32,8 +32,50 @@
 						'Einer der gewählten Kategorien enthält noch Produkte und kann daher nicht gelöscht werden.'
 					],
 					nothingSelected: 'Sie haben keine Kategorie ausgewählt. Klicken Sie auf eine Tabellenzeile, um eine Kategorie zu wählen, die Sie löschen möchten.'
+				},
+				save: {
+					success: [
+						'Die Kategorie „%s“ wurde erfolgreich gespeichert.',
+						'Die Kategorie wurde erfolgreich gespeichert.',
+						'Alle %d Kategorien wurden erfolgreich gespeichert.'
+					],
+					error: [
+						'Die Kategorie „%s“ konnte nicht gespeichert werden.',
+						'Die Kategorie konnte nicht gespeichert werden.',
+						'Es konnten nicht alle %d Kategorien gespeichert werden.'
+					]
 				}
 			};
+
+		vm.editing = [];
+
+		vm.select = function( category ) {
+			if( ! vm.editing[ category.id ] ) {
+				$scope.$parent.a.toggleSelection(category);
+			}
+		};
+
+		vm.edit = function( category ) {
+			vm.editing[ category.id ] = angular.copy(category);
+		};
+
+		vm.cancel = function( category ) {
+
+			if( vm.editing[ category.id ] ) {
+
+				var index = $scope.$parent.a.categories.indexOf( category );
+				$scope.$parent.a.categories[ index ] = vm.editing[ category.id ];
+
+				vm.editing.splice( category.id, 1 );
+
+			}
+
+		};
+
+		vm.save = function( category ) {
+			$scope.$parent.a.update( category, category.title, msg.save );
+			vm.editing.splice( category.id, 1 );
+		};
 
 		vm.delete = function( category ) {
 

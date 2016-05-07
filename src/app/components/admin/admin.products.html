@@ -16,37 +16,31 @@
 		</tr>
 	</thead>
 	<tbody>
-		<tr ng-repeat="product in a.products" ng-click="a.toggleSelection(product);" ng-class="{ 'active': product.selected }">
-			<td><input type="checkbox" ng-model="product.selected" ng-click="$event.stopPropagation();"></td>
+		<tr ng-repeat="product in a.products" ng-click="p.select(product);" ng-class="{ 'active': product.selected }">
+			<td><input type="checkbox" ng-model="product.selected" ng-click="$event.stopPropagation();" ng-hide="p.editing[ product.id ]"></td>
 			<td><img ng-src="{{ product.image.thumb }}" width="100" height="75" class="img-responsive" alt=""></td>
-			<td>{{ product.title }}</td>
-			<td>{{ product.number }}</td>
-			<td ng-if="product.category.title">{{ product.category.title }}</td>
-			<td ng-if="!product.category.title"><em>Keine Kategorie</em></td>
-			<td>
-				<button type="button" class="btn btn-xs btn-info"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Bearbeiten</button>
+			<td ng-hide="p.editing[ product.id ]">{{ product.title }}</td>
+			<td ng-show="p.editing[ product.id ]"><input type="text" class="form-control" ng-model="product.title" placeholder="Titel"></td>
+			<td ng-hide="p.editing[ product.id ]">{{ product.number }}</td>
+			<td ng-show="p.editing[ product.id ]"><input type="text" class="form-control" ng-model="product.number" placeholder="Produkt-Nr."></td>
+			<td ng-hide="p.editing[ product.id ]">
+				<span ng-if="product.category.title">{{ product.category.title }}</span>
+				<em ng-if="!product.category.title">Keine Kategorie</em>
+			</td>
+			<td ng-show="p.editing[ product.id ]">
+				<select class="form-control" ng-options="category as category.title for category in a.categories track by category.id" ng-model="product.category">
+					<option value="" disabled hidden>Kategorie</option>
+				</select>
+			</td>
+			<td ng-hide="p.editing[ product.id ]">
+				<button type="button" class="btn btn-xs btn-info" ng-click="p.edit(product); $event.stopPropagation();"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Bearbeiten</button>
 				<button type="button" class="btn btn-xs btn-warning" ng-click="p.deactivate(product); $event.stopPropagation();" ng-if="product.active"><span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span> Deaktivieren</button>
 				<button type="button" class="btn btn-xs btn-success" ng-click="p.activate(product); $event.stopPropagation();" ng-if="!product.active"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> Aktivieren</button>
 				<button type="button" class="btn btn-xs btn-danger" ng-click="p.delete(product); $event.stopPropagation();"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Löschen</button>
 			</td>
-		</tr>
-		<tr class="active">
-			<td></td>
-			<td><img src="http://dummyimage.com/400x300/ccc/777.jpg?text=Neues+Produkt" width="100" height="75" class="img-responsive" alt=""></td>
-			<td><input type="text" class="form-control" ng-model="product.title" placeholder="Titel"></td>
-			<td><input type="text" class="form-control" ng-model="product.number" placeholder="Produkt-Nr."></td>
-			<td>
-				<select class="form-control" ng-model="product.category">
-					<option ng-selected="category.id == product.category"
-							ng-repeat="category in a.categories"
-							value="{{ category.id }}">
-						{{ category.title }}
-					</option>
-				</select>
-			</td>
-			<td>
-				<button type="button" class="btn btn-sm btn-success"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></button>
-				<button type="button" class="btn btn-sm btn-default"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+			<td ng-show="p.editing[ product.id ]">
+				<button type="button" class="btn btn-sm btn-success" ng-click="p.save(product); $event.stopPropagation();"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></button>
+				<button type="button" class="btn btn-sm btn-default" ng-click="p.cancel(product); $event.stopPropagation();"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
 			</td>
 		</tr>
 	</tbody>

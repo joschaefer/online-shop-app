@@ -28,6 +28,18 @@
 					],
 					nothingSelected: 'Sie haben kein Produkt ausgewählt. Klicken Sie auf eine Tabellenzeile, um ein Produkt zu wählen, das Sie löschen möchten.'
 				},
+				save: {
+					success: [
+						'Das Produkt „%s“ wurde erfolgreich gespeichert.',
+						'Das Produkt wurde erfolgreich gespeichert.',
+						'Alle %d Produkte wurden erfolgreich gespeichert.'
+					],
+					error: [
+						'Das Produkt „%s“ konnte nicht gespeichert werden.',
+						'Das Produkt konnte nicht gespeichert werden.',
+						'Es konnten nicht alle %d Produkte gespeichert werden.'
+					]
+				},
 				activate: {
 					success: [
 						'Das Produkt „%s“ wurde erfolgreich aktiviert.',
@@ -55,6 +67,36 @@
 					nothingSelected: 'Sie haben kein Produkt ausgewählt. Klicken Sie auf eine Tabellenzeile, um ein Produkt zu wählen, das Sie deaktivieren möchten.'
 				}
 			};
+
+		vm.editing = [];
+
+		vm.select = function( product ) {
+			if( ! vm.editing[ product.id ] ) {
+				$scope.$parent.a.toggleSelection(product);
+			}
+		};
+
+		vm.edit = function( product ) {
+			vm.editing[ product.id ] = angular.copy(product);
+		};
+
+		vm.cancel = function( product ) {
+
+			if( vm.editing[ product.id ] ) {
+
+				var index = $scope.$parent.a.products.indexOf( product );
+				$scope.$parent.a.products[ index ] = vm.editing[ product.id ];
+
+				vm.editing.splice( product.id, 1 );
+
+			}
+
+		};
+
+		vm.save = function( product ) {
+			$scope.$parent.a.update( product, product.title, msg.save );
+			vm.editing.splice( product.id, 1 );
+		};
 
 		vm.delete = function( product ) {
 			$scope.$parent.a.delete( $scope.$parent.a.products, product, product.title, msg.delete );

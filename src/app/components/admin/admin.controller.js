@@ -32,6 +32,22 @@
 			item.selected = ! item.selected;
 		};
 
+		vm.update = function( item, name, msg ) {
+
+			var msgSuccess = _.replace( msg.success[0], '%s', name ),
+				msgError   = _.replace( msg.error[0],   '%s', name );
+
+			item.save().then(function() {
+				toastr.success( msgSuccess );
+			}, function( response ) {
+
+				$log.error( 'Error updating an item:', response );
+				toastr.error( msgError );
+
+			});
+
+		};
+
 		vm.delete = function( collection, item, name, msg ) {
 
 			var msgConfirm = _.replace( msg.confirm[0], '%s', name ),

@@ -6,7 +6,7 @@
 		.controller('AdminUsersController', AdminUsersController);
 
 	/** @ngInject */
-	function AdminUsersController( $scope, toastr ) {
+	function AdminUsersController( $scope ) {
 
 		var vm = this,
 			msg = {
@@ -32,6 +32,18 @@
 						'Einer der gewählten Benutzer ist Administrator und kann daher nicht gelöscht werden.'
 					],
 					nothingSelected: 'Sie haben keinen Benutzer ausgewählt. Klicken Sie auf eine Tabellenzeile, um einen Benutzer zu wählen, den Sie löschen möchten.'
+				},
+				save: {
+					success: [
+						'Der Benutzer „%s“ wurde erfolgreich gespeichert.',
+						'Der Benutzer wurde erfolgreich gespeichert.',
+						'Alle %d Benutzer wurden erfolgreich gespeichert.'
+					],
+					error: [
+						'Der Benutzer „%s“ konnte nicht gespeichert werden.',
+						'Der Benutzer konnte nicht gespeichert werden.',
+						'Es konnten nicht alle %d Benutzer gespeichert werden.'
+					]
 				},
 				activate: {
 					success: [
@@ -66,7 +78,35 @@
 				}
 			};
 
-		vm.date = _.now();
+		vm.editing = [];
+
+		vm.select = function( user ) {
+			if( ! vm.editing[ user.id ] ) {
+				$scope.$parent.a.toggleSelection(user);
+			}
+		};
+
+		vm.edit = function( user ) {
+			vm.editing[ user.id ] = angular.copy(user);
+		};
+
+		vm.cancel = function( user ) {
+
+			if( vm.editing[ user.id ] ) {
+
+				var index = $scope.$parent.a.users.indexOf( user );
+				$scope.$parent.a.users[ index ] = vm.editing[ user.id ];
+
+				vm.editing.splice( user.id, 1 );
+
+			}
+
+		};
+
+		vm.save = function( user ) {
+			$scope.$parent.a.update( user, user.email, msg.save );
+			vm.editing.splice( user.id, 1 );
+		};
 
 		vm.delete = function( user ) {
 
