@@ -4,24 +4,31 @@
 <div class="modal-body">
 	<div class="form-group">
 		<label for="title">Titel</label>
-		<input type="text" class="form-control" ng-model="product.title" placeholder="Titel" id="title">
+		<input type="text" class="form-control" ng-model="n.product.title" placeholder="Titel" id="title">
 	</div>
 	<div class="form-group">
 		<label for="number">Produkt-Nr.</label>
-		<input type="text" class="form-control" ng-model="product.number" placeholder="Produkt-Nr." id="number">
+		<input type="text" class="form-control" ng-model="n.product.number" placeholder="Produkt-Nr." id="number">
 	</div>
 	<div class="form-group">
 		<label for="category">Kategorie</label>
-		<select class="form-control" ng-options="category as category.title for category in a.categories track by category.id" ng-model="product.category" id="category">
+		<select class="form-control" ng-options="category as category.title for category in a.categories track by category.id" ng-model="n.product.category" id="category">
 			<option value="" disabled hidden>Kategorie</option>
 		</select>
 	</div>
 	<div class="form-group">
-		<label for="image">Produktbild</label>
-		<input type="file" class="form-control" id="image">
+		<label>Produktbild</label><br>
+		<button type="file" class="btn btn-default" ngf-select="n.upload($file);" accept="image/*" ngf-max-size="10MB" ng-hide="n.file.name">Bild auswählen</button>
+		<div ng-show="n.product.image" class="text-success">
+			<span class="glyphicon glyphicon-ok"></span> {{n.file.name}}
+		</div>
+		<div class="progress" ng-show="n.file.progress && !n.product.image">
+			<div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" style="width:{{n.file.progress}}%;"></div>
+		</div>
+		<div class="alert alert-danger" ng-show="n.errorMsg">{{n.errorMsg}}</div>
 	</div>
 </div>
 <div class="modal-footer">
 	<button type="button" class="btn btn-default" ng-click="$dismiss();">Abbrechen</button>
-	<button type="button" class="btn btn-success" ng-click="$close(product);">Speichern</button>
+	<button type="button" class="btn btn-success" ng-click="$close(n.product);">Speichern</button>
 </div>

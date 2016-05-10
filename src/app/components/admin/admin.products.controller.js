@@ -92,7 +92,9 @@
 
 			$uibModal.open({
 				templateUrl: 'app/components/admin/admin.products.modal.html',
-				scope: $scope
+				scope: $scope,
+				controller: 'AdminProductsModalController',
+				controllerAs: 'n'
 			}).result.then(function( newProduct ) {
 				$scope.$parent.a.add( $scope.$parent.a.products, newProduct, newProduct.title, msg.add );
 			});

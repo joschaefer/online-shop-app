@@ -18,7 +18,7 @@
 		cfpLoadingBarProvider.includeSpinner = false;
 
 		LightboxProvider.getImageUrl = function( product ) {
-			return product.image.original;
+			return product.image.medium;
 		};
 
 		LightboxProvider.getImageCaption = function( product ) {
