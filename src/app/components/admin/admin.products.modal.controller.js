@@ -6,7 +6,7 @@
 		.controller('AdminProductsModalController', AdminProductsModalController);
 
 	/** @ngInject */
-	function AdminProductsModalController( Upload ) {
+	function AdminProductsModalController( Upload, $log ) {
 
 		var vm = this;
 		vm.product = {};

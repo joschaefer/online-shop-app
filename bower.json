@@ -24,7 +24,9 @@
     "angular-bootstrap-lightbox": "^0.12.0",
     "angular-loading-bar": "^0.9.0",
     "lodash": "^4.11.1",
-    "ng-file-upload": "^12.0.4"
+    "ng-file-upload": "^12.0.4",
+    "angular-local-storage": "^0.2.7",
+    "angular-jwt": "^0.0.9"
   },
   "devDependencies": {
     "angular-mocks": "~1.4.2"

@@ -2,6 +2,6 @@
 	'use strict';
 
 	angular
-		.module('simpleOnlineShop', ['restangular', 'ui.router', 'ui.bootstrap', 'toastr', 'angular-loading-bar', 'bootstrapLightbox', 'ngFileUpload']);
+		.module('simpleOnlineShop', ['LocalStorageModule', 'restangular', 'angular-jwt', 'ui.router', 'ui.bootstrap', 'toastr', 'angular-loading-bar', 'bootstrapLightbox', 'ngFileUpload']);
 
 })();

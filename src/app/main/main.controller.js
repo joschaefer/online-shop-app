@@ -6,7 +6,7 @@
 		.controller('MainController', MainController);
 
 	/** @ngInject */
-	function MainController() {
+	function MainController($window, principal) {
 
 		var vm = this;
 
@@ -24,6 +24,11 @@
 				},
 				text: ''
 			}
+		};
+
+		vm.logout = function() {
+			principal.logout();
+			$window.location.href = '/';
 		};
 
 		vm.date = new Date();
