@@ -2,12 +2,17 @@
 	<h3 class="modal-title">Neue Kategorie hinzufügen</h3>
 </div>
 <div class="modal-body">
-	<div class="form-group">
-		<label for="title">Titel</label>
-		<input type="text" class="form-control" ng-model="category.title" placeholder="Bezeichnung eingeben" id="title">
-	</div>
+	<form name="form">
+		<div class="form-group" ng-class="{ 'has-success has-feedback' : form.title.$touched && form.title.$valid,
+											'has-error has-feedback'   : form.title.$touched && form.title.$invalid }">
+			<label class="control-label" for="title">Titel</label>
+			<input type="text" class="form-control" ng-model="category.title" placeholder="Bezeichnung eingeben" id="title" name="title" required>
+			<span class="glyphicon glyphicon-ok form-control-feedback"     ng-if="form.title.$touched && form.title.$valid"></span>
+			<span class="glyphicon glyphicon-remove form-control-feedback" ng-if="form.title.$touched && form.title.$invalid"></span>
+		</div>
+	</form>
 </div>
 <div class="modal-footer">
 	<button type="button" class="btn btn-default" ng-click="$dismiss();">Abbrechen</button>
-	<button type="button" class="btn btn-success" ng-click="$close(category);">Speichern</button>
+	<button type="button" class="btn btn-success" ng-click="$close(category);" ng-disabled="form.$invalid">Speichern</button>
 </div>
