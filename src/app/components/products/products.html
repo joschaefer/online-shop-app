@@ -8,7 +8,7 @@
 	<h3 class="col-xs-12" ng-if="category.products.length">{{ category.title }}</h3>
 
 	<div class="col-md-3 col-sm-4 col-xs-6" ng-repeat="product in category.products">
-		<a href ng-click="p.openPreview($index)" class="panel panel-default">
+		<a href ng-click="p.openPreview(category.products, $index)" class="panel panel-default">
 			<div class="panel-heading">{{ product.title }}</div>
 			<div class="panel-body">
 				<img ng-src="{{ product.image.thumb }}" class="img-responsive img-product" alt="Produktbild">

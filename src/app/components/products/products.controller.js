@@ -12,8 +12,8 @@
 		vm.categories = [];
 		vm.products = [];
 
-		vm.openPreview = function( index ) {
-			Lightbox.openModal( vm.products, index );
+		vm.openPreview = function( category, index ) {
+			Lightbox.openModal( category, index );
 		};
 
 		Restangular.all('categories').getList({
