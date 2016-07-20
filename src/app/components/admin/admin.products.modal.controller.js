@@ -6,7 +6,7 @@
 		.controller('AdminProductsModalController', AdminProductsModalController);
 
 	/** @ngInject */
-	function AdminProductsModalController( Upload, $log ) {
+	function AdminProductsModalController( Upload, $log, principal ) {
 
 		var vm = this;
 		vm.product = {};
@@ -18,6 +18,7 @@
 
 			Upload.upload({
 				url: 'http://localhost:1337/images/',
+				headers: {'Authorization': 'JWT ' + principal.token},
 				data: {image: file}
 			}).then(function (response) {
 				if (response.status >= 200 && response.status < 300) {
