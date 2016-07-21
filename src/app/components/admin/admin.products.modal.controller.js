@@ -26,12 +26,12 @@
 				} else {
 					vm.errorMsg = 'Fehler beim Übertragen der Datei.';
 					$log.error( 'Error uploading an image:', response );
-					file = null;
+					vm.file = null;
 				}
 			}, function (err) {
 				vm.errorMsg = 'Fehler beim Übertragen der Datei.';
 				$log.error( 'Error uploading an image:', err );
-				file = null;
+				vm.file = null;
 			}, function (evt) {
 				file.progress = Math.min(100, parseInt(100.0 * evt.loaded / evt.total));
 			});

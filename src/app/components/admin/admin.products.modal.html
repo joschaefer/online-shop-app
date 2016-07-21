@@ -39,5 +39,5 @@
 </div>
 <div class="modal-footer">
 	<button type="button" class="btn btn-default" ng-click="$dismiss();">Abbrechen</button>
-	<button type="button" class="btn btn-success" ng-click="$close(n.product);" ng-disabled="form.$invalid">Speichern</button>
+	<button type="button" class="btn btn-success" ng-click="$close(n.product);" ng-disabled="form.$invalid || !n.file.name">Speichern</button>
 </div>
