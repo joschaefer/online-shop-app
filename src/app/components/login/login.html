@@ -6,7 +6,7 @@
 		<uib-alert ng-repeat="alert in l.alerts" type="{{ alert.type }}" close="l.closeAlert($index)">{{ alert.text }}</uib-alert>
 		<form class="well">
 			<div class="form-group">
-				<input type="email" class="form-control" placeholder="E-Mail-Adresse" ng-model="l.user.email">
+				<input type="email" class="form-control" placeholder="E-Mail-Adresse" ng-model="l.user.email" autocorrect="off" autocapitalize="none" spellcheck="false">
 			</div>
 			<div class="form-group">
 				<input type="password" class="form-control" placeholder="Passwort" ng-model="l.user.password">

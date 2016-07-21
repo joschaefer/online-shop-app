@@ -19,7 +19,7 @@
 		<tr ng-repeat="user in a.users" ng-click="u.select(user);" ng-class="{ 'active': user.selected }">
 			<td><input type="checkbox" ng-model="user.selected" ng-click="$event.stopPropagation();" ng-hide="u.editing[ user.id ]"></td>
 			<td ng-hide="u.editing[ user.id ]">{{ user.email }}</td>
-			<td ng-show="u.editing[ user.id ]"><input type="email" class="form-control" ng-model="user.email" placeholder="E-Mail-Adresse"></td>
+			<td ng-show="u.editing[ user.id ]"><input type="email" class="form-control" ng-model="user.email" placeholder="E-Mail-Adresse" autocorrect="off" autocapitalize="none" spellcheck="false"></td>
 			<td ng-switch="user.active" ng-hide="u.editing[ user.id ]">
 				<span class="label label-success" ng-switch-when="true">Ja</span>
 				<span class="label label-warning" ng-switch-default>Nein</span>
