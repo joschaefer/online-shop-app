@@ -6,25 +6,11 @@
 		.controller('MainController', MainController);
 
 	/** @ngInject */
-	function MainController($window, principal) {
+	function MainController($window, principal, config) {
 
 		var vm = this;
 
-		vm.settings = {
-			shopName: 'Einfacher Online-Shop',
-			baseUrl: 'http://localhost:1337',
-			copyright: {
-				text: 'Musterfirma GmbH',
-				link: '#'
-			},
-			notification: {
-				sender: {
-					name: 'Musterfirma GmbH',
-					emailAddress: 'info@musterfirma.de'
-				},
-				text: ''
-			}
-		};
+		vm.settings = config;
 
 		vm.logout = function() {
 			principal.logout();

@@ -8,24 +8,24 @@
 		<div class="well">
 			<div class="form-group">
 				<label for="shopName" class="control-label">Shop-Name:</label>
-				<input type="text" class="form-control" id="shopName" placeholder="Name" ng-model="m.settings.shopName">
+				<input type="text" class="form-control" id="shopName" placeholder="Name" ng-model="m.settings.shopName" disabled>
 			</div>
 			<div class="form-group">
 				<label for="copyrightText" class="control-label">Copyright-Text:</label>
-				<input type="text" class="form-control" id="copyrightText" placeholder="Firma" ng-model="m.settings.copyright.text">
+				<input type="text" class="form-control" id="copyrightText" placeholder="Firma" ng-model="m.settings.copyright.text" disabled>
 			</div>
 			<div class="form-group">
 				<label for="copyrightLink" class="control-label">Link:</label>
-				<input type="url" class="form-control" id="copyrightLink" placeholder="http://" ng-model="m.settings.copyright.link">
+				<input type="url" class="form-control" id="copyrightLink" placeholder="http://" ng-model="m.settings.copyright.link" disabled>
 			</div>
 		</div>
 		<div class="well">
 			<div class="form-group">
 				<label for="baseUrl" class="control-label">URL des Datenservers:</label>
-				<input type="text" class="form-control" id="baseUrl" placeholder="https://" ng-model="m.settings.baseUrl">
+				<input type="text" class="form-control" id="baseUrl" placeholder="https://" ng-model="m.settings.baseUrl" disabled>
 			</div>
 		</div>
-		<div class="well">
+		<!--<div class="well">
 			<div class="form-group">
 				<label for="notificationSenderName" class="control-label">Absender von E-Mail-Benachrichtigungen:</label>
 				<input type="text" class="form-control" id="notificationSenderName" placeholder="Firma" ng-model="m.settings.notification.sender.name">
@@ -38,7 +38,7 @@
 				<label for="notificationText" class="control-label">Text der E-Mail-Benachrichtigung:</label>
 				<textarea class="form-control" rows="5" id="notificationText" ng-model="m.settings.notification.text"></textarea>
 			</div>
-		</div>
+		</div>-->
 		<div class="row">
 			<div class="col-sm-6 col-xs-8">
 				<button type="button" class="btn btn-success btn-block">Änderungen speichern</button>

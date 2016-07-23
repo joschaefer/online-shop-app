@@ -6,7 +6,7 @@
 		.controller('AdminProductsModalController', AdminProductsModalController);
 
 	/** @ngInject */
-	function AdminProductsModalController( Upload, $log, principal ) {
+	function AdminProductsModalController( Upload, $log, principal, config ) {
 
 		var vm = this;
 		vm.product = {};
@@ -17,7 +17,7 @@
 			vm.errorMsg = '';
 
 			Upload.upload({
-				url: 'http://localhost:1337/images/',
+				url: config.baseUrl + '/images/',
 				headers: {'Authorization': 'JWT ' + principal.token},
 				data: {image: file}
 			}).then(function (response) {

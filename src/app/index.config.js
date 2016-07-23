@@ -3,10 +3,18 @@
 
 	angular
 		.module('simpleOnlineShop')
+		.constant('config', {
+			shopName: 'Einfacher Online-Shop',
+			baseUrl:  'http://localhost:1337',
+			copyright: {
+				text: 'Musterfirma GmbH',
+				link: '#'
+			}
+		})
 		.config(config);
 
 	/** @ngInject */
-	function config($logProvider, toastrConfig, cfpLoadingBarProvider, LightboxProvider, RestangularProvider) {
+	function config($logProvider, toastrConfig, cfpLoadingBarProvider, LightboxProvider, RestangularProvider, config) {
 		// Enable log
 		$logProvider.debugEnabled(true);
 
@@ -27,7 +35,7 @@
 
 		LightboxProvider.templateUrl = 'app/components/products/lightbox.html';
 
-		RestangularProvider.setBaseUrl( 'http://localhost:1337' );
+		RestangularProvider.setBaseUrl( config.baseUrl );
 		//RestangularProvider.setDefaultHttpFields({cache: true});
 
 	}
