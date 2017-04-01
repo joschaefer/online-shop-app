@@ -18,6 +18,7 @@
 		};
 
 		vm.date = new Date();
+		vm.user = principal.user;
 
 	}
 })();

@@ -14,7 +14,7 @@
 			<ul class="nav navbar-nav navbar-right">
 				<li ui-sref-active="active"><a href ui-sref="home">Produkte</a></li>
 				<li ui-sref-active="active" uib-dropdown>
-					<a href uib-dropdown-toggle>Administration <span class="caret"></span></a>
+					<a href uib-dropdown-toggle ng-if="m.user.status == 'admin'">Administration <span class="caret"></span></a>
 					<ul class="dropdown-menu" uib-dropdown-menu>
 						<li><a href ui-sref="admin.products">Produkte</a></li>
 						<li><a href ui-sref="admin.categories">Kategorien</a></li>

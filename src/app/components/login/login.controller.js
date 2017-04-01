@@ -24,7 +24,7 @@
 			Restangular.all('login').post(vm.user).then(function (response) {
 
 				if (response.token) {
-					principal.login(response.token);
+					principal.login(response.token, response.user);
 					$window.location.href = '/';
 					return true;
 				}

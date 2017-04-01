@@ -17,7 +17,8 @@
 		});
 
 		Restangular.all('products').getList({
-			sort: 'title ASC'
+			sort: 'title ASC',
+			limit: 500
 		}).then(function( data ) {
 			vm.products = data;
 		});

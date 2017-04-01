@@ -12,17 +12,19 @@
 			isAuthenticated: false,
 			user: {
 				email: 'Gast',
-				isAdmin: false
+				status: 'guest'
 			}
 		};
 
-		principal.login = function (token) {
+		principal.login = function (token, user) {
 			localStorageService.set('access_token', token);
+			localStorageService.set('user_info', user);
 			$log.info('[Auth] Local access token saved');
 		};
 
 		principal.logout = function () {
 			localStorageService.remove('access_token');
+			localStorageService.remove('user_info');
 			$log.info('[Auth] Local access token removed');
 		};
 
@@ -39,7 +41,7 @@
 
 			if (decoded && !jwtHelper.isTokenExpired(token)) {
 				principal.isAuthenticated = true;
-				principal.user = decoded.user;
+				principal.user = localStorageService.get('user_info');
 				principal.token = token;
 			}
 

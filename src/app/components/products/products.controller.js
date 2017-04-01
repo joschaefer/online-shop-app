@@ -22,6 +22,7 @@
 
 			Restangular.all('products').getList({
 				sort: 'title asc',
+				limit: 500,
 				active: true
 			}).then(function( products ) {
 
